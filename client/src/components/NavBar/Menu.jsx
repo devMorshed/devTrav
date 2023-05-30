@@ -1,6 +1,5 @@
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { BsFillCalendarCheckFill } from "react-icons/bs";
-import Avatar from "./Avatar";
+import placeholderImg from "../../assets/images/placeholder.jpg";
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
@@ -18,22 +17,22 @@ const Menu = () => {
 		<>
 			<Link
 				to="/destinations"
-				className="block rounded-full px-4 py-3 hover:bg-neutral-100 transition ">
+				className="block rounded-full px-4 py-3 hover:bg-orange-100 transition ">
 				Destinations
 			</Link>
 			<Link
 				to="/popular"
-				className="block rounded-full px-4 py-3 hover:bg-neutral-100 transition ">
+				className="block rounded-full px-4 py-3 hover:bg-orange-100 transition ">
 				Popular
 			</Link>
 			<Link
 				to="/blogs"
-				className="block rounded-full  px-4 py-3 hover:bg-neutral-100 transition ">
+				className="block rounded-full  px-4 py-3 hover:bg-orange-100 transition ">
 				Blogs
 			</Link>
 			<Link
 				to="/mybookings"
-				className="flex rounded-full gap-2 items-center   px-4 py-3 hover:bg-neutral-100 transition ">
+				className="flex rounded-full gap-2 items-center   px-4 py-3 hover:bg-orange-100 transition ">
 				Bookings <BsFillCalendarCheckFill />
 			</Link>
 		</>
@@ -41,16 +40,23 @@ const Menu = () => {
 
 	return (
 		<div className="relative">
-			<div className="flex flex-row items-center gap-3">
-				<div className="hidden md:flex items-center gap-3  text-sm  py-3 px-4 transition">
+			<div className="flex items-center gap-3">
+				<div className="hidden md:flex items-center gap-2  py-3 px-4 transition">
 					{navItems}
 				</div>
-				<div
-					onClick={toggleOpen}
-					className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
-					{isOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
-					<div className="hidden md:block">
-						<Avatar />
+				<div onClick={toggleOpen} className="p-4 cursor-pointer ">
+					<div className="">
+						<img
+							className="rounded-full"
+							src={
+								user && user.photoURL
+									? user.photoURL
+									: placeholderImg
+							}
+							height={40}
+							width={40}
+							alt=""
+						/>
 					</div>
 				</div>
 			</div>

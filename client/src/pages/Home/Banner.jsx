@@ -46,7 +46,6 @@ const Banner = () => {
 				</div>
 				<div
 					data-aos="fade-left"
-					data-aos-offset="500"
 					data-aos-duration="500"
 					className="md:w-96 mx-auto">
 					<img className="" src={cabin} alt="" />

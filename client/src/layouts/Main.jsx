@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar/NavBar";
 import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import "@smastrom/react-rating/style.css";
+import Footer from "../components/Footer";
 AOS.init();
 
 const Main = () => {
@@ -12,6 +13,7 @@ const Main = () => {
 			<div className="pt-24">
 				<Outlet />
 			</div>
+			<Footer />
 		</div>
 	);
 };

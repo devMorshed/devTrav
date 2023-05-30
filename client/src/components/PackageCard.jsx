@@ -7,16 +7,18 @@ import { Rating } from "@smastrom/react-rating";
 
 const PackageCard = () => {
 	return (
-		<div className="grid shadow-lg hover:scale-[1.01] transistion duration-100 border-2 overflow-hidden rounded-xl items-center lg:grid-cols-3 gap-4">
+		<div
+			data-aos="fade-up-right"
+			className="grid shadow-lg hover:scale-[1.01] transistion duration-100 border-2 overflow-hidden rounded-xl items-center lg:grid-cols-3 gap-4">
 			<div className="relative min-h-[200px] h-full">
 				<AbsoluteBG
-					style={"bg-no-repeat bg-cover"}
+					style={"bg-no-repeat rounded-none bg-cover"}
 					src={
 						"https://codewithsadee.github.io/tourest/assets/images/popular-3.jpg"
 					}
 				/>
 			</div>
-			<div className="px-4 mx-auto">
+			<div className="px-4  mx-auto">
 				<h4 className="text-xl text-center">
 					EXPERIENCE THE GREAT HOLIDAY ON BEACH
 				</h4>
@@ -51,7 +53,7 @@ const PackageCard = () => {
 					$600 <span className="text-xs">/per person</span>
 				</p>
 				<button className="mx-auto block my-10 px-6 py-3 border rounded-lg text-white font-bold tracking-tighter bg-[#FF6000]">
-					Book  Now
+					Book Now
 				</button>
 			</div>
 		</div>
