@@ -7,7 +7,7 @@ const SectionHeading = ({ subHead, mainHead, text }) => {
 				{subHead}
 			</h5>
 			<h3 className="text-4xl font-light uppercase">{mainHead}</h3>
-			<p className=" text-[#454545] w-1/2 mx-auto text-center">{text}</p>
+			<p className=" text-[#454545] px-6 md:px-10 mx-auto text-center">{text}</p>
 		</div>
 	);
 };

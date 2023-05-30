@@ -22,7 +22,7 @@ const PopularCard = () => {
 				src={data.photo}
 			/>
 
-			<div className="absolute  text-[#454545] bottom-10 space-y-2 left-1/2 -translate-x-1/2 w-10/12 mx-auto bg-white rounded p-2">
+			<div className="absolute px-10 py-6  text-[#454545] bottom-10 space-y-2 left-1/2 -translate-x-1/2 w-10/12 mx-auto bg-white rounded">
 				<p className="font-light">{data.country}</p>
 				<p className="text-black uppercase text-xl">{data.place}</p>
 				<p>{data.short_description}</p>
