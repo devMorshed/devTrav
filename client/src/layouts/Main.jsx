@@ -3,7 +3,7 @@ import NavBar from "../components/shared/NavBar/NavBar";
 
 const Main = () => {
 	return (
-		<div>
+		<div className="max-w-7xl mx-auto">
 			<NavBar />
 			<div className="pt-24">
 				<Outlet />
