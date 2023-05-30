@@ -3,10 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import useAuth from "../../hooks/useAuth";
 import { FaPlaneDeparture } from "react-icons/fa";
+import { useState } from "react";
 
 const Login = () => {
-	const { setLoading, signIn, signInWithGoogle, loading } =
-		useAuth();
+	const { setLoading, signIn, signInWithGoogle, loading } = useAuth();
+
+	const [error, setError] = useState("");
 
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -17,11 +19,16 @@ const Login = () => {
 		const email = event.target.email.value;
 		const password = event.target.password.value;
 		console.log(email, password);
-		signIn(email, password).then((data) => {
-			console.log(data);
-			toast.success("Sign In Successfull");
-			navigate(destination);
-		});
+		signIn(email, password)
+			.then((data) => {
+				console.log(data);
+				toast.success("Sign In Successfull");
+				navigate(destination);
+			})
+			.catch((err) => {
+				setError(err.message);
+				setLoading(false);
+			});
 	};
 
 	const handleGoogle = (event) => {
@@ -29,9 +36,9 @@ const Login = () => {
 			.then(() => {
 				navigate(destination);
 			})
-			.catch((err) => {
+      .catch((err) => {
+				setError(err.message);
 				setLoading(false);
-				console.log(err);
 			});
 	};
 
@@ -60,8 +67,8 @@ const Login = () => {
 								type="email"
 								name="email"
 								id="email"
-                required
-                defaultValue={'test@t.com'}
+								required
+								defaultValue={"test@t.com"}
 								// placeholder="Enter Your Email Here"
 								className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
 								data-temp-mail-org="0"
@@ -78,14 +85,20 @@ const Login = () => {
 							<input
 								type="password"
 								name="password"
-                id="password"
-                defaultValue={'testtest'}
+								id="password"
+								defaultValue={"testtest"}
 								required
 								placeholder="*******"
 								className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900"
 							/>
 						</div>
 					</div>
+
+					{error && (
+						<div className="text-center text-red-500 font-bold">
+							{error}
+						</div>
+					)}
 
 					<div>
 						<button
@@ -108,7 +121,7 @@ const Login = () => {
 				</div>
 				<div
 					onClick={handleGoogle}
-					className="flex justify-center items-center gap-2 border m-5 p-2 border-gray-300 border-rounded cursor-pointer">
+					className="flex justify-center items-center max-w-96 mx-auto gap-2 border m-5 p-2 border-gray-300 border-rounded cursor-pointer">
 					<FcGoogle size={32} />
 					<p>Continue with Google</p>
 				</div>

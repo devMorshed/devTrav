@@ -1,12 +1,9 @@
-import {
-	Link,
-	useLocation,
-	useNavigate,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import { FaPlaneDeparture } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
 
 const SignUp = () => {
 	const {
@@ -17,6 +14,8 @@ const SignUp = () => {
 		loading,
   } = useAuth();
   
+	const [error, setError] = useState("");
+
 	const location = useLocation();
 	const navigate = useNavigate();
 	const destination = location.state?.from?.pathname || "/";
@@ -56,8 +55,8 @@ const SignUp = () => {
 					});
 			})
 			.catch((err) => {
+				setError(err.message);
 				setLoading(false);
-				console.log(err);
 			});
 	};
 
@@ -67,8 +66,8 @@ const SignUp = () => {
 				navigate(destination);
 			})
 			.catch((err) => {
+				setError(err.message);
 				setLoading(false);
-				console.log(err);
 			});
 	};
 	return (
@@ -147,7 +146,11 @@ const SignUp = () => {
 							/>
 						</div>
 					</div>
-
+					{error && (
+						<div className="text-center text-red-500 font-bold">
+							{error}
+						</div>
+					)}
 					<div>
 						<button
 							type="submit"
@@ -158,18 +161,18 @@ const SignUp = () => {
 								</div>
 							) : (
 								"Continue"
-              )}
+							)}
 						</button>
 					</div>
 				</form>
-				
+
 				<div
 					onClick={handleGoogle}
-					className="flex justify-center items-center gap-2 border m-5 p-2 border-gray-300 border-rounded cursor-pointer">
-					<FcGoogle size={32}  />
+					className="flex justify-center items-center max-w-96 mx-auto gap-2 border m-5 p-2 border-gray-300 border-rounded cursor-pointer">
+					<FcGoogle size={32} />
 					<p>Continue with Google</p>
-        </div>
-        
+				</div>
+
 				<p className="px-6 text-sm text-center text-gray-400">
 					Already have an account?
 					<Link
