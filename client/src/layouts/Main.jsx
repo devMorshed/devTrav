@@ -1,5 +1,9 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/shared/NavBar/NavBar";
+import NavBar from "../components/NavBar/NavBar";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+import "@smastrom/react-rating/style.css";
+AOS.init();
 
 const Main = () => {
 	return (

@@ -35,35 +35,39 @@ const Banner = () => {
 		<Container>
 			<div className="md:flex justify-around items-center gap-8 p-10 space-y-10">
 				<div className="space-y-6 md:w-1/2">
-					<h2 className="text-7xl font-black text-[#FF6000] tracking-wider">
+					<h2 className="text-7xl text-center font-black text-[#FF6000] tracking-wider">
 						Take a Break!
 					</h2>
-					<h2 className="text-2xl text-[#454545]">
+					<h2 className="text-2xl font-light text-[#454545]">
 						Discover the world's hidden gems and create
 						unforgettable memories with our immersive travel
 						experiences.
 					</h2>
 				</div>
-				<div className="md:w-96 mx-auto">
-					<img className="md:animate-bounce" src={cabin} alt="" />
+				<div
+					data-aos="fade-left"
+					data-aos-offset="500"
+					data-aos-duration="500"
+					className="md:w-96 mx-auto">
+					<img className="" src={cabin} alt="" />
 				</div>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="grid grid-cols-2 md:grid-cols-4 items-center gap-4 rounded-md bg-[#FFE6C7] p-10">
 					<input
-						className="w-full p-4 border border-gray-300 rounded-md"
+						className="w-full p-4 border border-gray-300 rounded-full"
 						type="text"
 						placeholder="Destination"
 						{...register("destination")}
 					/>
 					<input
-						className="w-full p-4 border border-gray-300 rounded-md"
+						className="w-full p-4 border border-gray-300 rounded-full"
 						type="date"
 						placeholder="Date"
 						{...register("date")}
 					/>
 					<input
-						className="w-full p-4 border border-gray-300 rounded-md"
+						className="w-full p-4 border border-gray-300 rounded-full"
 						type="number"
 						placeholder="Person"
 						{...register("person")}
