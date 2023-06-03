@@ -36,8 +36,10 @@ const PackageCard = ({ data }) => {
 			const cartItem = {
 				packageId: _id,
 				title,
-				image,
-				price,
+        image,
+        duration,
+        people,
+				price : parseFloat(price),
 				email: user.email,
 			};
 			axios.post("/cart", cartItem).then((data) => {
@@ -100,7 +102,7 @@ const PackageCard = ({ data }) => {
 					<Rating style={{ maxWidth: 90 }} value={ratings} readOnly />
 				</div>
 				<p className="text-5xl text-center text-[#FF6000] font-bold">
-					{price} <span className="text-xs">/per person</span>
+					${price} <span className="text-xs">/per person</span>
 				</p>
 				<button
 					onClick={addToCart}
