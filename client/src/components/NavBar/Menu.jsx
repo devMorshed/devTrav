@@ -3,9 +3,12 @@ import placeholderImg from "../../assets/images/placeholder.jpg";
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
 const Menu = () => {
 	const { user, logOut } = useContext(AuthContext);
+
+	const [cart] = useCart();
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -31,9 +34,12 @@ const Menu = () => {
 				Blogs
 			</Link>
 			<Link
-				to="/mybookings"
-				className="flex rounded-full gap-2 items-center   px-4 py-3 hover:bg-orange-100 transition ">
+				to="/bookings"
+				className="flex relative rounded-full gap-2 items-center   px-4 py-3 hover:bg-orange-100 transition ">
 				Bookings <BsFillCalendarCheckFill />
+				<div className="md:absolute rounded-full text-green-700  z-50 md:top-1 md:right-3">
+					<p>{cart?.length}</p>
+				</div>
 			</Link>
 		</>
 	);

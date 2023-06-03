@@ -18,9 +18,7 @@ const Popular = () => {
 					<PopularCard />
 					<PopularCard />
 					<PopularCard />
-					<PopularCard />
-					<PopularCard />
-					<PopularCard />
+				
 				</div>
 				<button className="mx-auto block my-10 px-6 py-3 border rounded-lg text-white font-bold tracking-tighter bg-[#FF6000]">
 					More Destinations
