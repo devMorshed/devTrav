@@ -19,14 +19,19 @@ const Menu = () => {
 	const navItems = (
 		<>
 			<Link
-				to="/destinations"
+				to="/flight"
 				className="block rounded-full px-4 py-3 hover:bg-orange-100 transition ">
-				Destinations
+				Flight
 			</Link>
 			<Link
-				to="/popular"
+				to="/hotel"
 				className="block rounded-full px-4 py-3 hover:bg-orange-100 transition ">
-				Popular
+				Hotel
+			</Link>
+			<Link
+				to="/allpackages"
+				className="block rounded-full px-4 py-3 hover:bg-orange-100 transition ">
+				Package
 			</Link>
 			<Link
 				to="/blogs"
@@ -34,7 +39,7 @@ const Menu = () => {
 				Blogs
 			</Link>
 			<Link
-				to="/bookings"
+				to="/dashboard/bookings"
 				className="flex relative rounded-full gap-2 items-center   px-4 py-3 hover:bg-orange-100 transition ">
 				Bookings <BsFillCalendarCheckFill />
 				<div className="md:absolute rounded-full text-green-700  z-50 md:top-1 md:right-3">
@@ -75,7 +80,7 @@ const Menu = () => {
 								<Link
 									to="/dashboard"
 									className="flex gap-2 items-center   px-4 py-3 hover:bg-neutral-100 transition">
-									Profile
+									Dashboard
 								</Link>
 								<div
 									onClick={logOut}

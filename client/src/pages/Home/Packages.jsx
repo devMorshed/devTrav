@@ -3,6 +3,7 @@ import Container from "../../components/shared/Container";
 import SectionHeading from "../../components/shared/SectionHeading";
 import PackageCard from "../../components/PackageCard";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Packages = () => {
 	const [packages, setPackages] = useState();
@@ -11,7 +12,6 @@ const Packages = () => {
 		axios.get("/packages").then((data) => setPackages(data.data));
 	}, []);
 
-	console.log(packages);
 
 	return (
 		<div className="my-60">
@@ -29,9 +29,11 @@ const Packages = () => {
 						<PackageCard key={tourPack._id} data={tourPack} />
 					))}
 				</div>
-				<button className="mx-auto block my-10 px-6 py-3 border rounded-lg text-white font-bold tracking-tighter bg-[#FF6000]">
-					More Packages
-				</button>
+				<Link to={'/allpackages'}>
+					<button className="mx-auto block my-10 px-6 py-3 border rounded-lg text-white font-bold tracking-tighter bg-[#FF6000]">
+						More Packages
+					</button>
+				</Link>
 			</Container>
 		</div>
 	);

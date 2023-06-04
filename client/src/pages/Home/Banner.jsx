@@ -29,8 +29,6 @@ const Banner = () => {
 		}
 	};
 
-	console.log(userBooking);
-
 	return (
 		<Container>
 			<div className="md:flex justify-around items-center gap-8 p-10 space-y-10">

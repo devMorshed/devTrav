@@ -16,7 +16,6 @@ const PackageCard = ({ data }) => {
 	const { user } = useAuth();
 	const [_, refetch] = useCart();
 
-	console.log(refetch);
 	const {
 		_id,
 		title,
@@ -74,7 +73,7 @@ const PackageCard = ({ data }) => {
 	return (
 		<div
 			data-aos="fade-up-right"
-			className="grid shadow-lg hover:scale-[1.01] transistion duration-100 border-2 overflow-hidden rounded-xl items-center lg:grid-cols-3 gap-4">
+			className="grid hover:shadow-xl transition-shadow duration-1000 hover:scale-[1.01] transistion border-2 overflow-hidden rounded-xl items-center lg:grid-cols-3 gap-4">
 			<div className="relative min-h-[200px] h-full">
 				<AbsoluteBG
 					style={"bg-no-repeat rounded-none bg-cover bg-center"}
