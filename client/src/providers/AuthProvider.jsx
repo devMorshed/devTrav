@@ -21,7 +21,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [userBooking, setUserBooking] = useState({});
+  const [userBooking, setUserBooking] = useState({});
 
 	const createUser = (email, password) => {
 		setLoading(true);
@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
 		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
+
 
 	const signInWithGoogle = () => {
 		setLoading(true);
@@ -73,11 +74,12 @@ const AuthProvider = ({ children }) => {
 			}
 
 			axios
-				.put(`/users/${currentUser.email}`, {
+				.post(`/user/${currentUser.email}`, {
 					name: currentUser.displayName,
-					email: currentUser.email,
+          email: currentUser.email,
+          role : 'user'
 				})
-				// .then((data) => console.log(data.data));
+				.then((data) => console.log(data.data));
 			setLoading(false);
 		});
 		return () => {

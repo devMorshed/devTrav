@@ -1,10 +1,15 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin.jsx";
 
 const Dashboard = () => {
-	const isAdmin = true;
 
-	return (
+  const [isAdmin, isAdminLoading] = useAdmin();
+
+  if (isAdminLoading) {
+    return <div>Loading</div>
+  } else {
+    return (
 		<div className="flex min-h-[calc(100vh-266px-96px)]">
 			<div className="sidebar  md:w-1/4 border">
 				{isAdmin ? (
@@ -20,7 +25,7 @@ const Dashboard = () => {
 							Manage User
 						</NavLink>
 						<NavLink
-							to="bookings"
+							to="managebookings"
 							className="flex gap-2 items-center   px-4 py-3 hover:bg-neutral-100 transition">
 							Manage Bookings
 						</NavLink>
@@ -55,6 +60,7 @@ const Dashboard = () => {
 			</div>
 		</div>
 	);
+  }
 };
 
 export default Dashboard;

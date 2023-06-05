@@ -14,6 +14,8 @@ import MyHistory from "../pages/Dashboard/MyHistory";
 import Hotel from "../pages/Hotel/Hotel";
 import Flight from "../pages/Flight/Flight";
 import AllPackage from "../pages/AllPackage/AllPackage";
+import AdminRoute from "./AdminRoute";
+import ManageBookings from "../pages/Dashboard/ManageBookings";
 
 export const router = createBrowserRouter([
 	{
@@ -63,11 +65,27 @@ export const router = createBrowserRouter([
 					},
 					{
 						path: "users",
-						element: <Users />,
+						element: (
+							<AdminRoute>
+								<Users />
+							</AdminRoute>
+						),
 					},
 					{
 						path: "addpackage",
-						element: <AddPackage />,
+						element: (
+							<AdminRoute>
+								<AddPackage />
+							</AdminRoute>
+						),
+					},
+					{
+						path: "managebookings",
+						element: (
+							<AdminRoute>
+								<ManageBookings />
+							</AdminRoute>
+						),
 					},
 				],
 			},

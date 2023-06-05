@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useCart from "../../hooks/useCart";
 import { Link } from "react-router-dom";
@@ -6,9 +5,12 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import Swal from "sweetalert2";
 import Button from "../../components/shared/Button";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Bookings = () => {
 	const [cart, refetch] = useCart();
+
+	const [axiosSecure] = useAxiosSecure();
 
 	const totalPrice = cart?.reduce(
 		(accumulator, current) => accumulator + current.price,
@@ -27,7 +29,7 @@ const Bookings = () => {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				axios.delete(`/cart/${id}`).then((data) => {
+				axiosSecure.delete(`/cart/${id}`).then((data) => {
 					console.log(data.data);
 					refetch();
 					if (data.data.deletedCount === 1) {
@@ -103,10 +105,12 @@ const Bookings = () => {
 	} else {
 		return (
 			<div>
-        <p className="text-5xl m-10 text-orange-400">You Have Nothing In cart</p>
-        <Link to={'/allpackages'}>
-          <Button cclass={'mx-auto block'} text={'Book Now'}/>
-        </Link>
+				<p className="text-5xl m-10 text-orange-400">
+					You Have Nothing In cart
+				</p>
+				<Link to={"/allpackages"}>
+					<Button cclass={"mx-auto block"} text={"Book Now"} />
+				</Link>
 			</div>
 		);
 	}

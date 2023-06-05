@@ -60,8 +60,48 @@ async function run() {
 		res.send(token);
 	});
 
-	app.put("/users/:email", async (req, res) => {
+	const verifyAdmin = async (req, res, next) => {
+		const email = req.decoded.email;
+		const query = { email: email };
+		const user = await usersCollection.findOne(query);
+		if (user.role !== "admin") {
+			res.status(403).send({
+				error: true,
+				message: "Forbidden Admin Access",
+			});
+		}
+		if (user.role === "admin") {
+			next();
+		}
+	};
+
+	// checking admin role
+	app.get("/isadmin/:email", verifyJWT, async (req, res) => {
 		const email = req.params.email;
+		if (req.decoded.email != email) {
+			res.send({ admin: false });
+		}
+		const query = { email: email };
+		const user = await usersCollection.findOne(query);
+		const result = { admin: user?.role === "admin" };
+		res.send(result);
+	});
+
+	app.post("/user/:email", async (req, res) => {
+		const user = req.body;
+		const query = { email: req.params.email };
+		const existinguser = await usersCollection.findOne(query);
+		if (existinguser) {
+			return res.send("User Alredy Existed");
+		}
+
+		const result = await usersCollection.insertOne(user);
+		res.send(result);
+	});
+
+	app.put("/makeadmin/:email", verifyJWT, verifyAdmin, async (req, res) => {
+		const email = req.params.email;
+
 		const user = req.body;
 		const query = { email: email };
 		const options = { upsert: true };
@@ -76,8 +116,16 @@ async function run() {
 		res.send(result);
 	});
 
-	app.get("/users", async (req, res) => {
+	app.get("/users", verifyJWT, async (req, res) => {
 		const result = await usersCollection.find().toArray();
+		res.send(result);
+	});
+
+	// delete user as admin
+	app.delete("/user/:email", verifyJWT, verifyAdmin, async (req, res) => {
+		const email = req.params.email;
+		const query = { email: email };
+		const result = await usersCollection.deleteOne(query);
 		res.send(result);
 	});
 
@@ -105,7 +153,7 @@ async function run() {
 		const result = await cartCollection.insertOne(cartItem);
 		res.send(result);
 	});
-	app.delete("/cart/:id", async (req, res) => {
+	app.delete("/cart/:id", verifyJWT, async (req, res) => {
 		const id = req.params.id;
 		const query = { _id: new ObjectId(id) };
 

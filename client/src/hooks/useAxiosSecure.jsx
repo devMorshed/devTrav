@@ -17,7 +17,6 @@ const useAxiosSecure = () => {
 			}
 			return config;
 		});
-
 		axiosSecure.interceptors.response.use(
 			(response) => response,
 			async (error) => {
