@@ -58,14 +58,14 @@ const Bookings = () => {
 								no
 							</th>
 							<th className="py-3 text-xs font-medium text-gray-500 uppercase tracking-tighter md:tracking-wider">
-								Package
+								Item
 							</th>
 
 							<th className="py-3 text-xs font-medium text-gray-500 uppercase tracking-tighter md:tracking-wider">
 								Person
 							</th>
 							<th className="py-3 text-xs font-medium text-gray-500 uppercase tracking-tighter md:tracking-wider">
-								Days
+								Duration
 							</th>
 							<th className="py-3 text-xs font-medium text-gray-500 uppercase tracking-tighter md:tracking-wider">
 								Price

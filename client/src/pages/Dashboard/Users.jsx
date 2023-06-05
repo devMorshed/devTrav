@@ -42,12 +42,7 @@ const Users = () => {
   };
   
 	const handleDeleteUser = async (user) => {
-		const updatedRole = {
-			name: user.name,
-			email: user.email,
-			role: "admin",
-		};
-
+	
 		Swal.fire({
 			title: `Delete ${user.name}`,
 			icon: "warning",
@@ -58,13 +53,13 @@ const Users = () => {
 		}).then(async (result) => {
 			if (result.isConfirmed) {
 				await axiosSecure
-					.delete(`/user/${user.email}`)
+					.delete(`/user/${user._id}`)
 					.then((data) => {
 						if (data.data.deletedCount === 1) {
 							refetch();
 							Swal.fire(`${user.name} Deleted`);
 						}
-					});
+					}).catch(err => console.log(err))
 			}
 		});
 	};

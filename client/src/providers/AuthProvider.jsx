@@ -21,7 +21,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
-  const [userBooking, setUserBooking] = useState({});
+	const [userBooking, setUserBooking] = useState({});
 
 	const createUser = (email, password) => {
 		setLoading(true);
@@ -32,7 +32,6 @@ const AuthProvider = ({ children }) => {
 		setLoading(true);
 		return signInWithEmailAndPassword(auth, email, password);
 	};
-
 
 	const signInWithGoogle = () => {
 		setLoading(true);
@@ -61,6 +60,13 @@ const AuthProvider = ({ children }) => {
 			setUser(currentUser);
 
 			if (currentUser) {
+				// Setting current user to database
+				axios.post(`/user/${currentUser?.email}`, {
+					name: currentUser.displayName,
+					email: currentUser.email,
+					role: "user",
+				});
+				// storing user JWT token
 				axios
 					.post("/jwt", {
 						name: currentUser.displayName,
@@ -73,13 +79,6 @@ const AuthProvider = ({ children }) => {
 				localStorage.removeItem("access_token");
 			}
 
-			axios
-				.post(`/user/${currentUser.email}`, {
-					name: currentUser.displayName,
-          email: currentUser.email,
-          role : 'user'
-				})
-				.then((data) => console.log(data.data));
 			setLoading(false);
 		});
 		return () => {

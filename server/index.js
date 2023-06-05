@@ -50,6 +50,7 @@ async function run() {
 	const usersCollection = client.db("devTrav").collection("users");
 	const cartCollection = client.db("devTrav").collection("cart");
 	const packagesCollection = client.db("devTrav").collection("packages");
+	const flightsCollection = client.db("devTrav").collection("flights");
 
 	app.post("/jwt", (req, res) => {
 		const user = req.body;
@@ -122,15 +123,21 @@ async function run() {
 	});
 
 	// delete user as admin
-	app.delete("/user/:email", verifyJWT, verifyAdmin, async (req, res) => {
-		const email = req.params.email;
-		const query = { email: email };
+	app.delete("/user/:id", verifyJWT, verifyAdmin, async (req, res) => {
+		const id = req.params.id;
+
+		const query = { _id: new ObjectId(id) };
 		const result = await usersCollection.deleteOne(query);
 		res.send(result);
 	});
 
 	app.get("/packages", async (req, res) => {
 		const result = await packagesCollection.find().toArray();
+		res.send(result);
+	});
+
+	app.get("/flights", async (req, res) => {
+		const result = await flightsCollection.find().toArray();
 		res.send(result);
 	});
 
